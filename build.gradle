@@ -1,0 +1,64 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'jacoco'
+
+//mainClassName = "org.dstadler.suunto.Harvester"
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Apache POI Bugzilla Statistics', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.dstadler:commons-dost:1.0.0.+'
+
+    compile 'com.google.guava:guava:18.0'
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.apache.commons:commons-lang3:3.3.2'
+    compile 'org.apache.velocity:velocity:1.7'  
+
+    /*compile 'net.sourceforge.htmlunit:htmlunit:2.15'
+    compile 'com.google.code.gson:gson:2.3.1'
+	compile 'org.apache.commons:commons-math3:3.3'
+	compile 'org.apache.poi:poi:3.11'
+	compile 'org.apache.poi:poi-ooxml:3.11'*/
+	/* Testing with latest trunk-POI
+	dependencies {
+    	compile files('../commons-dost/lib/xmlbeans-2.6.0.jar')
+    	compile files('../commons-dost/lib/poi-3.11-20141221.jar')
+    	compile files('../commons-dost/lib/poi-ooxml-3.11-20141221.jar')
+    	compile files('../commons-dost/lib/poi-ooxml-schemas-3.11-20141221.jar')
+	}*/
+	
+	// to make Eclipse project link to it...
+	compile 'junit:junit:4.+'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
+
+test {
+    systemProperties = System.properties
+
+	// show standard out and standard error of the test JVM(s) on the console
+	testLogging.showStandardStreams = true
+}
+
+jacoco {
+    toolVersion = '0.7.4.201502262128'
+}
+
+/*task createZip(type: Zip) {
+    from '.'
+    excludes = ['bin', 'build', '.gradle', '20*', 'Moves.txt', 'Splits.json', '.classpath', '.svn']
+}*/
