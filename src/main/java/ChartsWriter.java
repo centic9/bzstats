@@ -23,7 +23,8 @@ public class ChartsWriter {
     public static void main(String[] args) throws IOException, SAXException, ParseException {
         LoggerFactory.initLogging();
 
-//                    new URL("https://bz.apache.org/bugzilla/buglist.cgi?columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Cbug_id%2Copendate&f0=OP&f1=OP&f3=CP&f4=CP&j1=OR&list_id=122189&product=POI&query_format=advanced&ctype=rdf&human=1&limit=0"),
+        log.info("Fetching data...");
+        //try (InputStream stream = new URL("https://bz.apache.org/bugzilla/buglist.cgi?columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Cbug_id%2Copendate&f0=OP&f1=OP&f3=CP&f4=CP&j1=OR&list_id=122189&product=POI&query_format=advanced&ctype=rdf&human=1&limit=0").openStream()) {
         try (InputStream stream = new FileInputStream("buglist2.xml")) {
             SortedMap<String, Map<String, String>> bugs =
                     new XmlHandler().parseContent(stream);
@@ -34,7 +35,7 @@ public class ChartsWriter {
             for(Map<String,String> bug : bugs.values()) {
                 Date opened = getDate(bug, "opendate");
 
-                if(isOpen(bug)) {
+                if(BugStat.isOpen(bug)) {
                 	addOpened(stats, opened);
                 	open++;
                 }
@@ -43,27 +44,6 @@ public class ChartsWriter {
             write(bugs, stats, open);
         }
     }
-
-
-	private static boolean isOpen(Map<String, String> bug) {
-        String state = bug.get("bug_status");
-
-        switch (state) {
-            case "NEW":
-            case "NEEDINFO":
-            case "REOPENED":
-            	return true;
-
-            case "CLOSED":
-            case "RESOLVED":
-            case "VERIFIED":
-            case "FIXED":
-                return false;
-
-            default:
-                throw new IllegalArgumentException("Unexpected state: " + state);
-        }
-	}
 
 
 	private static Date getDate(Map<String, String> bug, String attribute)
@@ -124,17 +104,15 @@ public class ChartsWriter {
         	Date changed = getDate(bug, "changeddate");
 			if(changed != null && changed.after(lastWeek)) {
         		lastWeekTouched++;
-        		if(!isOpen(bug)) {
+        		if(!BugStat.isOpen(bug)) {
         			lastWeekClosed++;
         		}
         	}
         }
         	
         log.info("Had: " + bugs.size() + " bugs, " + open + " are still open");
-        log.info("Last week " + lastWeekOpened + " bugs were reported and " + lastWeekTouched + " were changed and up to " + lastWeekClosed + " were resolved");
+        log.info("Last week " + lastWeekOpened + " new bugs were reported and " + lastWeekTouched + " were changed and up to " + lastWeekClosed + " were resolved");
         
         //VelocityUtils.render(context, "HeartratePlot.vm", new File("build/HeartratePlot.html"));
     }
-
-
 }
