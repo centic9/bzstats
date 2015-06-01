@@ -25,4 +25,8 @@ public class BugStat {
                 throw new IllegalArgumentException("Unexpected state: " + state);
         }
 	}
+	
+	public static boolean isNeedinfo(Map<String, String> bug) {
+		return bug.get("bug_status").equals("NEEDINFO");
+	}
 }
