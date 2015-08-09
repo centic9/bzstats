@@ -140,10 +140,11 @@ public class ChartsWriter {
 			}
         }
         	
-        log.info("Had: " + bugs.size() + " bugs, " + open + " are still open overall");
+        log.info("Had: " + bugs.size() + " bugs reported for POI altogether");
+        log.info(open + " bugs are open overall");
         log.info("Having " + enhancement + " enhancements, thus having " + (open-enhancement) + " actual bugs");
-        log.info("Having " + needinfo + " NEEDINFO bugs, thus having " + (open-enhancement-needinfo) + " actual workable bugs");
-        log.info("Of these, " + patch + " have patches available");
+        log.info(needinfo + " of these are waiting for feedback, thus having " + (open-enhancement-needinfo) + " actual workable bugs");
+        log.info(patch + " of the workable bugs have patches available");
         log.info("Last week " + lastWeekOpened + " new bugs were reported and " + lastWeekTouched + " were changed and up to " + lastWeekClosed + " were resolved");
         
         //VelocityUtils.render(context, "HeartratePlot.vm", new File("build/HeartratePlot.html"));
