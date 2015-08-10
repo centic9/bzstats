@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
+import org.dstadler.commons.collections.MappedCounter;
+import org.dstadler.commons.collections.MappedCounterImpl;
 import org.dstadler.commons.logging.jdk.LoggerFactory;
 import org.xml.sax.SAXException;
 
@@ -105,7 +107,6 @@ public class ChartsWriter {
         stat.stillOpen = stat.stillOpen + 1;
     }
 
-
     public static void write(Map<String, Map<String,String>> bugs, SortedMap<Date, BugStat> stats, int open) throws IOException, ParseException {
         Map<String,Object> context = new HashMap<>();
         context.put("bugs", bugs);
@@ -114,6 +115,8 @@ public class ChartsWriter {
 
         log.info("TODO: Writing to build/BugStats.html");
 
+        MappedCounter<String> components = new MappedCounterImpl<>();
+        
         Date lastWeek = DateUtils.addDays(new Date(), -7);
         int lastWeekOpened = 0, lastWeekTouched = 0, lastWeekClosed = 0;
         int enhancement = 0, patch = 0, needinfo = 0;
@@ -131,12 +134,22 @@ public class ChartsWriter {
         			lastWeekClosed++;
         		}
         	}
+
+			// look at open bugs only for number of enhancements, patches, needinfo, ...
+			if(!BugStat.isOpen(bug)) {
+				continue;
+			}
+
 			if(getSeverity(bug) == BugSeverity.enhancement) {
 				enhancement++;
 			} else if(BugStat.isNeedinfo(bug)) {
 				needinfo++;
-			} else if(getKeywords(bug).toLowerCase().contains("patch")) {
-				patch++;
+			} else {
+				components.addInt(bug.get("component"), 1);
+				
+				if(getKeywords(bug).toLowerCase().contains("patch")) {
+					patch++;
+				}
 			}
         }
         	
@@ -145,6 +158,7 @@ public class ChartsWriter {
         log.info("Having " + enhancement + " enhancements, thus having " + (open-enhancement) + " actual bugs");
         log.info(needinfo + " of these are waiting for feedback, thus having " + (open-enhancement-needinfo) + " actual workable bugs");
         log.info(patch + " of the workable bugs have patches available");
+        log.info("Distribution of workable bugs across components: " + components.sortedMap());
         log.info("Last week " + lastWeekOpened + " new bugs were reported and " + lastWeekTouched + " were changed and up to " + lastWeekClosed + " were resolved");
         
         //VelocityUtils.render(context, "HeartratePlot.vm", new File("build/HeartratePlot.html"));
