@@ -1,4 +1,7 @@
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -43,6 +46,9 @@ public class ChartsWriter {
 	private final static Logger log = LoggerFactory.make();
 
     private static final FastDateFormat format = FastDateFormat.getInstance("yyyy-MM-dd");
+    private static final FastDateFormat outformat = FastDateFormat.getInstance("yyyy-MM-dd HH:mm");
+
+	private static final File FILE = new File("stats.csv");
 
     public static void main(String[] args) throws IOException, SAXException, ParseException {
         LoggerFactory.initLogging();
@@ -152,16 +158,27 @@ public class ChartsWriter {
 				}
 			}
         }
-        	
-        log.info("Had: " + bugs.size() + " bugs reported for POI altogether");
-        log.info(open + " bugs are open overall");
-        log.info("Having " + enhancement + " enhancements, thus having " + (open-enhancement) + " actual bugs");
-        log.info(needinfo + " of these are waiting for feedback, thus having " + (open-enhancement-needinfo) + " actual workable bugs");
-        log.info(patch + " of the workable bugs have patches available");
-        log.info("Distribution of workable bugs across components: " + components.sortedMap());
-        log.info("Last week " + lastWeekOpened + " new bugs were reported and " + lastWeekTouched + " were changed and up to " + lastWeekClosed + " were resolved");
+        
+        String output = "Result:\n" +  
+        	"    " + outformat.format(new Date()) + "     Had: " + bugs.size() + " bugs reported for POI altogether\n" +
+            "    " + outformat.format(new Date()) + "     " + open + " bugs are open overall\n" +
+            "    " + outformat.format(new Date()) + "     Having " + enhancement + " enhancements, thus having " + (open-enhancement) + " actual bugs\n" +
+            "    " + outformat.format(new Date()) + "     " + needinfo + " of these are waiting for feedback, thus having " + (open-enhancement-needinfo) + " actual workable bugs\n" +
+            "    " + outformat.format(new Date()) + "     " + patch + " of the workable bugs have patches available\n" +
+            "    " + outformat.format(new Date()) + "     Distribution of workable bugs across components: " + components.sortedMap() + "\n" +
+            "    " + outformat.format(new Date()) + "     Last week " + lastWeekOpened + " new bugs were reported and " + lastWeekTouched + " were changed and up to " + lastWeekClosed + " were resolved\n";
+        log.info(output);
         
         //VelocityUtils.render(context, "HeartratePlot.vm", new File("build/HeartratePlot.html"));
+        
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE, true))) {
+        	// Date,Timestamp,Bugs overall,Open overall,Enhancements,Actual bugs,Needinfo,Workable bugs,Bugs with patch,Opened last week,Changed last week,Closed last week,Distribution
+        	writer.write(outformat.format(new Date()) + "," + new Date().getTime() + "," + 
+        			bugs.size() + "," + open + "," + enhancement + "," + (open-enhancement) + "," + needinfo + "," + (open-enhancement-needinfo) + "," + 
+        			patch + "," + lastWeekOpened + "," + lastWeekTouched + "," + lastWeekClosed + "," + 
+        			components.sortedMap().toString().replace(",", ";") +
+        			"\n");
+        }
     }
 
 
