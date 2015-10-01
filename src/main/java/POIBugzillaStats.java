@@ -21,7 +21,7 @@ import org.dstadler.commons.collections.MappedCounterImpl;
 import org.dstadler.commons.logging.jdk.LoggerFactory;
 import org.xml.sax.SAXException;
 
-public class ChartsWriter {
+public class POIBugzillaStats {
     private static URL URL;
     static {
     	try {
@@ -116,7 +116,7 @@ public class ChartsWriter {
     public static void write(Map<String, Map<String,String>> bugs, SortedMap<Date, BugStat> stats, int open) throws IOException, ParseException {
         Map<String,Object> context = new HashMap<>();
         context.put("bugs", bugs);
-        context.put("writer", ChartsWriter.class);
+        context.put("writer", POIBugzillaStats.class);
         context.put("stats", stats);
 
         log.info("TODO: Writing to build/BugStats.html");
