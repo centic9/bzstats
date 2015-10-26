@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Plot counts of Apache POI bugzilla entries over time</title>
+
+  <!--link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,400italic" type="text/css" />
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css" /-->
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+		
+    <!--script src="jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="highcharts.js" type="text/javascript"></script>
+    <script src="highcharts-more.js" type="text/javascript"></script>
+    <script src="exporting.js" type="text/javascript"></script-->
+</head>
+<body id="bd" class="clearfix">
+
+<div id="container" style="min-width: 310px; height: 700px; max-width: 1200px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'column',
+            zoomType: 'xy'
+        },
+        data: {
+            csv: csv
+        },
+        title: {
+            text: 'Counts of Apache POI bugzilla issues'
+        },
+        xAxis: {
+            title: {
+                text: 'Date'
+            },
+            type: 'datetime',
+            /*startOnTick: true,
+            endOnTick: true,*/
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: 'Count'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 100,
+            y: 20,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+            borderWidth: 1
+        },
+        plotOptions: {
+            bubble: {
+                marker: {
+                    radius: 15,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(255, 255, 0)'
+                        }
+                    }
+                },
+                maxSize: '10%',
+                minSize: 4
+            }
+        },
+        tooltip: {
+            //headerFormat: '<b>{series.name}</b><br>',
+            formatter: function () {
+                return "<b>" + this.series.name + "</b><br>" + 
+                    new Date(this.x) + ": " + this.y;
+            },
+            crosshairs: [true,true]
+            //pointFormat: '{point.x} cm, {point.y} kg'
+        }
+    });
+});
+
+</script>
+
+</body>
