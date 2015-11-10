@@ -7,7 +7,7 @@ apply plugin: 'jacoco'
 
 sourceCompatibility = 1.7
 version = '1.0'
-mainClassName = "ChartsWriter"
+mainClassName = "POIBugzillaStats"
 
 jar {
     manifest {
@@ -63,3 +63,26 @@ jacoco {
     from '.'
     excludes = ['bin', 'build', '.gradle', '20*', 'Moves.txt', 'Splits.json', '.classpath', '.svn']
 }*/
+
+task refreshStats(type: JavaExec) {
+	classpath = sourceSets.main.runtimeClasspath
+
+	main = mainClassName 
+}
+
+import org.apache.tools.ant.taskdefs.condition.Os
+task createChart(type: Exec) {
+	if(Os.isFamily(Os.FAMILY_WINDOWS)) {
+		executable 'C:/cygwin/bin/bash.exe' 
+		args '-c', '/bin/R --no-save -f chart.R'
+	} else {
+		executable 'R' 
+		args '--no-save', '-f', 'chart.R'
+	}
+}
+
+createChart.mustRunAfter refreshStats
+
+task refresh() {
+   dependsOn classes, refreshStats, createChart
+}
