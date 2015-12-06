@@ -26,9 +26,6 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
     compile 'org.apache.commons:commons-lang3:3.3.2'
     compile 'org.apache.velocity:velocity:1.7'  
-	
-	// to make Eclipse project link to it...
-	compile 'junit:junit:4.+'
 }
 
 // work around unnecessary timestamp in generated file which always causes dirty files in version control
