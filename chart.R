@@ -1,10 +1,35 @@
 library(parsedate)
 data <- read.csv("stats.csv", stringsAsFactors=FALSE, sep=",", quote="")
-plot(parse_date(data$Date, approx = TRUE), data$Open.overall, type="l", 
-    ylim=c(0, 600), panel.first = grid(18, 18), xlab="Date", ylab="Issue Counts")
-lines(parse_date(data$Date, approx = TRUE), data$Enhancements, col="red")
-lines(parse_date(data$Date, approx = TRUE), data$Actual.bugs, col="blue")
-lines(parse_date(data$Date, approx = TRUE), data$Needinfo, col="green")
-lines(parse_date(data$Date, approx = TRUE), data$Workable.bugs, col="orange")
-lines(parse_date(data$Date, approx = TRUE), data$Bugs.with.patch, col="brown")
 
+library(reshape2)
+datam <- melt(data, id.vars="Date", measure.vars=c("Open.overall","Actual.bugs","Enhancements",
+                                                   "Needinfo","Workable.bugs","Bugs.with.patch"))
+
+library(ggplot2)
+
+ggplot(datam, aes(x=parse_date(Date, approx = TRUE), y=value, colour=variable)) +
+    geom_line() +
+    # add fitted regression lines
+    geom_smooth(data=subset(datam, parse_date(Date, approx = TRUE) >= parse_date("2015-08-10 10:21")), 
+                            method="lm", level=0.99, linetype="dashed") +
+    # pin the y-axis at zero
+    expand_limits(y=0) +
+    # start after the change in how we compute the values, it's actually at 2015-08-10 10:21
+    #xlim(parse_date("2015-08-19 00:00"), max(parse_date(datam$Date, approx = TRUE))) +
+    # specify the label for both axes
+    xlab("Date") +
+    ylab("Number of issues") +
+    # add more ticks on the y-axis
+    scale_y_continuous(breaks=seq(0,1000,by=100)) +
+    # set a title for the graph
+    ggtitle("Open bugs in Apache POI") + 
+    # set the default black/white theme
+    theme_bw() +
+    # legend styling
+    theme(legend.position="right",
+          legend.key = element_rect(fill = "white")) +
+    scale_colour_discrete(labels=c("Open","Bugs","Enhancements",
+                                    "Needinfo","Workable Bugs","Bugs with Patch")) +
+    guides(colour=guide_legend(title=NULL))
+
+ggsave("stats.svg", width=210, height=148, units="mm")
