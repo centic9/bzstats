@@ -2,8 +2,9 @@ library(parsedate)
 data <- read.csv("stats.csv", stringsAsFactors=FALSE, sep=",", quote="")
 
 library(reshape2)
-datam <- melt(data, id.vars="Date", measure.vars=c("Open.overall","Actual.bugs","Enhancements",
-                                                   "Needinfo","Workable.bugs","Bugs.with.patch"))
+datam <- melt(data, id.vars="Date", measure.vars=
+	# when you change the order here also adjust it below for the legent
+	c("Open.overall","Actual.bugs","Workable.bugs","Needinfo","Enhancements","Bugs.with.patch"))
 
 library(ggplot2)
 
@@ -28,8 +29,9 @@ ggplot(datam, aes(x=parse_date(Date, approx = TRUE), y=value, colour=variable)) 
     # legend styling
     theme(legend.position="right",
           legend.key = element_rect(fill = "white")) +
-    scale_colour_discrete(labels=c("Open","Bugs","Enhancements",
-                                    "Needinfo","Workable Bugs","Bugs with Patch")) +
+    scale_colour_discrete(labels=
+		# this list needs to match the order used above!
+		c("Open","Bugs","Workable Bugs","Needinfo","Enhancements","Bugs with Patch")) +
     guides(colour=guide_legend(title=NULL))
 
 ggsave("stats.svg", width=210, height=148, units="mm")
