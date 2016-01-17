@@ -80,25 +80,25 @@ public class POIBugzillaStats {
 			throws ParseException {
 		Date date;
 		String dateStr = bug.get(attribute);
-		
+
 		if(dateStr == null) {
 			return null;
 		}
-		
+
 		if(dateStr.length() == 10) {
 		       date = format.parse(dateStr);
 		} else {
 		    log.info("TODO: Date: " + dateStr + " for item '" + attribute + "', using " + new Date() + " for bug " + bug.get("id"));
 		    date = new Date();
 		}
-		
+
 		// only use day-resolution for now
-		date = 
+		date =
 				DateUtils.setHours(
 						DateUtils.setMinutes(
 								DateUtils.setSeconds(
 										DateUtils.setHours(date, 0), 0), 0), 0);
-		
+
 		return date;
 	}
 
@@ -122,7 +122,7 @@ public class POIBugzillaStats {
         log.info("TODO: Writing to build/BugStats.html");
 
         MappedCounter<String> components = new MappedCounterImpl<>();
-        
+
         Date lastWeek = DateUtils.addDays(new Date(), -7);
         int lastWeekOpened = 0, lastWeekTouched = 0, lastWeekClosed = 0;
         int enhancement = 0, patch = 0, needinfo = 0;
@@ -152,14 +152,14 @@ public class POIBugzillaStats {
 				needinfo++;
 			} else {
 				components.addInt(bug.get("component"), 1);
-				
+
 				if(getKeywords(bug).toLowerCase().contains("patch")) {
 					patch++;
 				}
 			}
         }
-        
-        String output = "Result:\n" +  
+
+        String output = "Result:\n" +
         	"    " + outformat.format(new Date()) + "     Had: " + bugs.size() + " bugs reported for POI altogether\n" +
             "    " + outformat.format(new Date()) + "     " + open + " bugs are open overall\n" +
             "    " + outformat.format(new Date()) + "     Having " + enhancement + " enhancements, thus having " + (open-enhancement) + " actual bugs\n" +
@@ -168,14 +168,14 @@ public class POIBugzillaStats {
             "    " + outformat.format(new Date()) + "     Distribution of workable bugs across components: " + components.sortedMap() + "\n" +
             "    " + outformat.format(new Date()) + "     Last week " + lastWeekOpened + " new bugs were reported and " + lastWeekTouched + " were changed and up to " + lastWeekClosed + " were resolved\n";
         log.info(output);
-        
+
         //VelocityUtils.render(context, "HeartratePlot.vm", new File("build/HeartratePlot.html"));
-        
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE, true))) {
         	// Date,Timestamp,Bugs overall,Open overall,Enhancements,Actual bugs,Needinfo,Workable bugs,Bugs with patch,Opened last week,Changed last week,Closed last week,Distribution
-        	writer.write(outformat.format(new Date()) + "," + new Date().getTime() + "," + 
-        			bugs.size() + "," + open + "," + enhancement + "," + (open-enhancement) + "," + needinfo + "," + (open-enhancement-needinfo) + "," + 
-        			patch + "," + lastWeekOpened + "," + lastWeekTouched + "," + lastWeekClosed + "," + 
+        	writer.write(outformat.format(new Date()) + "," + new Date().getTime() + "," +
+        			bugs.size() + "," + open + "," + enhancement + "," + (open-enhancement) + "," + needinfo + "," + (open-enhancement-needinfo) + "," +
+        			patch + "," + lastWeekOpened + "," + lastWeekTouched + "," + lastWeekClosed + "," +
         			components.sortedMap().toString().replace(",", ";") +
         			"\n");
         }
@@ -188,6 +188,6 @@ public class POIBugzillaStats {
 
 
 	private static BugSeverity getSeverity(Map<String, String> bug) {
-		return BugSeverity.valueOf(bug.get("bug_severity"));		
+		return BugSeverity.valueOf(bug.get("bug_severity"));
 	}
 }
