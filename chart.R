@@ -9,7 +9,10 @@ datam <- melt(data, id.vars="Date", measure.vars=
 library(ggplot2)
 
 ggplot(datam, aes(x=parse_date(Date, approx = TRUE), y=value, colour=variable)) +
-    geom_line() +
+	# draw lines with dots and inner white-circles to get a "subway map"-like effect
+    geom_line(size = 2) +
+    geom_point(size = 3) +
+    geom_point(size = 1.50, color = "white") +
     # add fitted regression lines
     geom_smooth(data=subset(datam, parse_date(Date, approx = TRUE) >= parse_date("2015-08-10 10:21")), 
                             method="lm", level=0.99, linetype="dashed") +
