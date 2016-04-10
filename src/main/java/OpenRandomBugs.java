@@ -6,6 +6,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +23,10 @@ public class OpenRandomBugs {
     public static void main(String[] args) throws IOException, SAXException, InterruptedException {
         LoggerFactory.initLogging();
 
-        log.info("Fetching data from " + POIBugzillaStats.URL);
-        try (InputStream stream = POIBugzillaStats.URL.openStream()) {
+        URL url = new URL(POIBugzillaStats.URL.toString() +
+                "&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&bug_status=NEEDINFO");
+        log.info("Fetching data from " + url);
+        try (InputStream stream = url.openStream()) {
             //try (InputStream stream = new FileInputStream("buglist2.xml")) {
             SortedMap<String, Map<String, String>> bugs =
                     new XmlHandler().parseContent(stream);
@@ -48,7 +51,7 @@ public class OpenRandomBugs {
                 Pair<String, Map<String, String>> entry = bugList.get(randomIndex);
                 starter.openURL(POIBugzillaStats.BASE_URL + "show_bug.cgi?id=" + entry.getValue().get("id"));
 
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             }
         }
     }

@@ -33,7 +33,8 @@ public class POIBugzillaStats {
                     + "bug_severity%2C"
                     + "priority%2C"
                     + "keywords%2C"
-                    + "opendate&f0=OP&f1=OP&f3=CP&f4=CP&j1=OR&list_id=122189&product=POI&query_format=advanced&ctype=rdf&human=1&limit=0");
+                    + "opendate&f0=OP&f1=OP&f3=CP&f4=CP&j1=OR&list_id=122189&product=POI&" +
+                    "query_format=advanced&ctype=rdf&human=1&limit=0");
         } catch (MalformedURLException e) {
             throw new IllegalStateException(e);
         }
