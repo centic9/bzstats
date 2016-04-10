@@ -4,7 +4,6 @@ import java.util.Map;
 
 public class BugStat {
     public int stillOpen;
-    public int closedToday;
 
 	public static boolean isOpen(Map<String, String> bug) {
         String state = bug.get("bug_status");
