@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1c608bdc-f54c-4487-8669-94117b6a93ab" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_dstadler_commons_dost_1_0_0_18.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_dstadler_commons_dost_1_0_0_15.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/POI Bugzilla Stats.ipynb" afterPath="$PROJECT_DIR$/POI Bugzilla Stats.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bugzilla.iml" afterPath="$PROJECT_DIR$/bugzilla.iml" />
     </list>
     <ignored path="bugzilla.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -875,7 +871,7 @@
       <option name="number" value="Default" />
       <updated>1452251276264</updated>
       <workItem from="1459621424509" duration="648000" />
-      <workItem from="1460273979506" duration="2564000" />
+      <workItem from="1460273979506" duration="2590000" />
     </task>
     <task id="LOCAL-00001" summary="Add small app to open random open bugs, reformat, ...">
       <created>1460281813604</created>
@@ -883,11 +879,17 @@
       <option name="project" value="LOCAL" />
       <updated>1460281813604</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="IntelliJ project files">
+      <created>1460281841425</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1460281841425</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3212000" />
+    <option name="totallyTimeSpent" value="3238000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1680" height="1002" extended-state="0" />
@@ -924,8 +926,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <MESSAGE value="Add small app to open random open bugs, reformat, ..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add small app to open random open bugs, reformat, ..." />
+    <MESSAGE value="IntelliJ project files" />
+    <option name="LAST_COMMIT_MESSAGE" value="IntelliJ project files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
