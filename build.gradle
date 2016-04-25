@@ -46,7 +46,7 @@ eclipseJdt.finalizedBy adjustEclipseSettingsFile
 eclipseJdt.finalizedBy sortEclipseSettingsFile
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.9'
+    gradleVersion = '2.12'
 }
 
 task adjustWrapperPropertiesFile << {
@@ -66,7 +66,7 @@ test {
 }
 
 jacoco {
-    toolVersion = '0.7.5.201505241946'
+    toolVersion = '0.7.6.201602180812'
 }
 
 /*task createZip(type: Zip) {
