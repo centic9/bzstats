@@ -41,4 +41,4 @@ ggplot(datam, aes(x=parse_date(Date, approx = TRUE), y=value, colour=variable, l
         c("Open","Bugs","Workable Bugs","Needinfo","Enhancements","Bugs with Patch")) +
     guides(colour=guide_legend(title=NULL))
 
-ggsave("stats.svg", width=300, height=250, units="mm")
+ggsave("stats.svg", width=400, height=250, units="mm")
