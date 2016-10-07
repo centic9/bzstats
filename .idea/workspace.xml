@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1c608bdc-f54c-4487-8669-94117b6a93ab" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bugzilla.iml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="3d50c326-f164-4551-8763-b0db7cf3f675" name="Excluded" comment="" />
@@ -109,11 +108,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="POIBugzillaStats.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="POIBugzillaStats.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/POIBugzillaStats.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="558">
               <caret line="46" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -948,7 +957,7 @@
       <updated>1452251276264</updated>
       <workItem from="1459621424509" duration="648000" />
       <workItem from="1460273979506" duration="7576000" />
-      <workItem from="1475259879657" duration="391000" />
+      <workItem from="1475259879657" duration="414000" />
     </task>
     <task id="LOCAL-00001" summary="Add small app to open random open bugs, reformat, ...">
       <created>1460281813604</created>
@@ -992,11 +1001,18 @@
       <option name="project" value="LOCAL" />
       <updated>1475260259368</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="IntelliJ files and IntelliJ warnings">
+      <created>1475260283857</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1475260283857</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8615000" />
+    <option name="totallyTimeSpent" value="8638000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1680" height="1002" extended-state="0" />
@@ -1119,14 +1135,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/POI Bugzilla Stats.ipynb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1422">
@@ -1191,6 +1199,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="46" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
