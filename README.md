@@ -10,3 +10,21 @@ https://bz.apache.org/bugzilla/reports.cgi?product=POI&datasets=UNCONFIRMED&data
 # Status Counts Chart - Only active states
 
 https://bz.apache.org/bugzilla/reports.cgi?product=POI&datasets=UNCONFIRMED&datasets=NEW&datasets=ASSIGNED&datasets=REOPENED&datasets=NEEDINFO
+
+# Requirements
+
+* cairo development files (libcairo-dev on Debian/Ubuntu)
+* R
+* R packages
+** parsedate
+** reshape2
+** ggplot2
+** svglite
+
+Install packages via 
+
+```
+$ R
+> install.packages("<package>")
+> quit()
+```
