@@ -102,6 +102,7 @@ public class POIBugzillaStats {
 
     private static void addOpened(SortedMap<Date, BugStat> stats, Date opened) {
         BugStat stat = stats.get(opened);
+        //noinspection Java8ReplaceMapGet
         if (stat == null) {
             stat = new BugStat();
             stats.put(opened, stat);
