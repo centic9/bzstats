@@ -18,35 +18,16 @@ repositories {
 }
 
 dependencies {
-    compile 'org.dstadler:commons-dost:1.0.0.+'
+    compile 'org.dstadler:commons-dost:1.0.0.22'
 
-    compile 'com.google.guava:guava:20.0'
+    compile 'com.google.guava:guava:21.0'
     compile 'commons-io:commons-io:2.5'
     compile 'org.apache.commons:commons-lang3:3.5'
     compile 'org.apache.velocity:velocity:1.7'  
 }
 
-// work around unnecessary timestamp in generated file which always causes dirty files in version control
-// https://issues.gradle.org/browse/GRADLE-2293
-task adjustEclipseSettingsFile << {
-	ant.replaceregexp(match:'^#.*', replace:'', flags:'g', byline:true) {
-		fileset(dir: project.projectDir, includes: '.settings/org.eclipse.jdt.core.prefs,.settings/com.google.gdt.eclipse.core.prefs')
-	}
-}
-task sortEclipseSettingsFile << {
-	new File(project.projectDir, '.settings/org.eclipse.jdt.core.prefs').with { it.text = it.readLines().findAll { it }.sort().join('\n') }
-	new File(project.projectDir, '.classpath').with { it.text = it.readLines().findAll { it }.unique().join('\n') }
-	File file = new File(project.projectDir, '.settings/com.google.gdt.eclipse.core.prefs');
-	if(file.exists()) {
-		file.with { it.text = it.readLines().findAll { it }.sort().join('\n') }
-	}
-	ant.fixcrlf(srcDir: '.settings', eol: 'lf')
-}
-eclipseJdt.finalizedBy adjustEclipseSettingsFile
-eclipseJdt.finalizedBy sortEclipseSettingsFile
-
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
+    gradleVersion = '3.4.1'
 }
 
 task adjustWrapperPropertiesFile << {
