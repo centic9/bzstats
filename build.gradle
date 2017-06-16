@@ -17,12 +17,12 @@ repositories {
 }
 
 dependencies {
-    compile 'org.dstadler:commons-dost:1.0.0.22'
+    compile 'org.dstadler:commons-dost:1.0.0.23'
 
     compile 'com.google.guava:guava:21.0'
     compile 'commons-io:commons-io:2.5'
-    compile 'org.apache.commons:commons-lang3:3.5'
-    compile 'org.apache.velocity:velocity:1.7'  
+    compile 'org.apache.commons:commons-lang3:3.6'
+    compile 'org.apache.velocity:velocity:1.7'
 }
 
 task wrapper(type: Wrapper) {
