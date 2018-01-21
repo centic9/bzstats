@@ -790,7 +790,7 @@
       <workItem from="1475259879657" duration="414000" />
       <workItem from="1486326287094" duration="784000" />
       <workItem from="1516218943998" duration="310000" />
-      <workItem from="1516531977001" duration="123000" />
+      <workItem from="1516531977001" duration="142000" />
     </task>
     <task id="LOCAL-00001" summary="Add small app to open random open bugs, reformat, ...">
       <created>1460281813604</created>
@@ -855,11 +855,18 @@
       <option name="project" value="LOCAL" />
       <updated>1516532086706</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Update IntelliJ project after build.gradle updates">
+      <created>1516532108121</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1516532108121</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9855000" />
+    <option name="totallyTimeSpent" value="9874000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1680" height="1002" extended-state="0" />
