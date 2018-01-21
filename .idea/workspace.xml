@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1c608bdc-f54c-4487-8669-94117b6a93ab" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_21_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_10.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_commons_io_2_6.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_lang3_3_7.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_4.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_7.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_dstadler_commons_dost_1_0_0_24.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_collections_commons_collections_3_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_collections_commons_collections_3_2_1.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/bugzilla.iml" afterPath="$PROJECT_DIR$/.idea/modules/bugzilla.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/bugzilla_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/bugzilla_main.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/bugzilla_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/bugzilla_test.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="3d50c326-f164-4551-8763-b0db7cf3f675" name="Excluded" comment="" />
@@ -801,7 +790,7 @@
       <workItem from="1475259879657" duration="414000" />
       <workItem from="1486326287094" duration="784000" />
       <workItem from="1516218943998" duration="310000" />
-      <workItem from="1516531977001" duration="94000" />
+      <workItem from="1516531977001" duration="123000" />
     </task>
     <task id="LOCAL-00001" summary="Add small app to open random open bugs, reformat, ...">
       <created>1460281813604</created>
@@ -859,11 +848,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486326474504</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update IntelliJ project after build.gradle updates">
+      <created>1516532086706</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1516532086706</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9826000" />
+    <option name="totallyTimeSpent" value="9855000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1680" height="1002" extended-state="0" />
@@ -924,7 +920,8 @@
     <MESSAGE value="IntelliJ files" />
     <MESSAGE value="IntelliJ files and IntelliJ warnings" />
     <MESSAGE value="Update stats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update stats" />
+    <MESSAGE value="Update IntelliJ project after build.gradle updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update IntelliJ project after build.gradle updates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
