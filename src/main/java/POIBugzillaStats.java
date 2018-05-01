@@ -160,8 +160,10 @@ public class POIBugzillaStats {
         String output = "Result:\n" +
                 "    " + outformat.format(new Date()) + "     Had: " + bugs.size() + " bugs reported for POI altogether\n" +
                 "    " + outformat.format(new Date()) + "     " + open + " bugs are open overall\n" +
-                "    " + outformat.format(new Date()) + "     Having " + enhancement + " enhancements, thus having " + (open - enhancement) + " actual bugs\n" +
-                "    " + outformat.format(new Date()) + "     " + needinfo + " of these are waiting for feedback, thus having " + (open - enhancement - needinfo) + " actual workable bugs\n" +
+                "    " + outformat.format(new Date()) + "     Having " + enhancement + " enhancements\n" +
+                "    " + outformat.format(new Date()) + "     Thus having " + (open - enhancement) + " actual bugs\n" +
+                "    " + outformat.format(new Date()) + "     " + needinfo + " of these are waiting for feedback\n" +
+                "    " + outformat.format(new Date()) + "     Thus having " + (open - enhancement - needinfo) + " actual workable bugs\n" +
                 "    " + outformat.format(new Date()) + "     " + patch + " of the workable bugs have patches available\n" +
                 "    " + outformat.format(new Date()) + "     Distribution of workable bugs across components: " + components.sortedMap() + "\n" +
                 "    " + outformat.format(new Date()) + "     Last week " + lastWeekOpened + " new bugs were reported and " + lastWeekTouched + " were changed and up to " + lastWeekClosed + " were resolved\n";
