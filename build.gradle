@@ -17,16 +17,16 @@ repositories {
 }
 
 dependencies {
-    compile 'org.dstadler:commons-dost:1.0.0.24'
+    compile 'org.dstadler:commons-dost:1.0.0.25'
 
-    compile 'com.google.guava:guava:21.0'
+    compile 'com.google.guava:guava:25.0-jre'
     compile 'commons-io:commons-io:2.6'
     compile 'org.apache.commons:commons-lang3:3.7'
     compile 'org.apache.velocity:velocity:1.7'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.4.1'
+    gradleVersion = '4.6'
 }
 
 task adjustWrapperPropertiesFile << {
@@ -46,7 +46,7 @@ test {
 }
 
 jacoco {
-    toolVersion = '0.7.9'
+    toolVersion = '0.8.1'
 }
 
 /*task createZip(type: Zip) {
