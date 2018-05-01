@@ -12,6 +12,7 @@ public class BugStat {
             case "NEW":
             case "NEEDINFO":
             case "REOPENED":
+            case "UNCONFIRMED":
             	return true;
 
             case "CLOSED":
