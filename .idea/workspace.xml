@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list id="3d50c326-f164-4551-8763-b0db7cf3f675" name="Excluded" comment="" />
-    <list default="true" readonly="true" id="1c608bdc-f54c-4487-8669-94117b6a93ab" name="Default" comment="Update to Gradle 4.6, commons-dost 1.0.0.25, guava 25.0-jre and JaCoCo 0.8.1">
+    <list default="true" readonly="true" id="1c608bdc-f54c-4487-8669-94117b6a93ab" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats.csv" beforeDir="false" afterPath="$PROJECT_DIR$/stats.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stats.svg" beforeDir="false" afterPath="$PROJECT_DIR$/stats.svg" afterDir="false" />
     </list>
+    <list id="3d50c326-f164-4551-8763-b0db7cf3f675" name="Excluded" comment="" />
     <ignored path="bugzilla.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -88,11 +86,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
+            <state relative-caret-position="232">
+              <caret line="53" column="79" selection-start-line="53" selection-start-column="79" selection-end-line="53" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -106,7 +104,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="POIBugzillaStats.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="POIBugzillaStats.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/POIBugzillaStats.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="263">
@@ -531,17 +529,6 @@
               <item name="bugzilla" type="b2602c69:ProjectViewProjectNode" />
               <item name="bugzilla" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
-            <path>
-              <item name="bugzilla" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bugzilla" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bugzilla" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bugzilla" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -785,7 +772,7 @@
       <workItem from="1486326287094" duration="784000" />
       <workItem from="1516218943998" duration="310000" />
       <workItem from="1516531977001" duration="142000" />
-      <workItem from="1525198508843" duration="554000" />
+      <workItem from="1525198508843" duration="648000" />
     </task>
     <task id="LOCAL-00001" summary="Add small app to open random open bugs, reformat, ...">
       <created>1460281813604</created>
@@ -878,11 +865,25 @@
       <option name="project" value="LOCAL" />
       <updated>1525199062797</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Refresh stats">
+      <created>1525199101031</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1525199101031</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Update workspace file">
+      <created>1525199118801</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1525199118801</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10428000" />
+    <option name="totallyTimeSpent" value="10522000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1680" height="1002" extended-state="0" />
@@ -903,7 +904,7 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25977996" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.3299435" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3299435" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.16442543" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -948,7 +949,9 @@
     <MESSAGE value="Update to Gradle 4.6, commons-dost 1.0.0.25, guava 25.0-jre and JaCoCo 0.8.1" />
     <MESSAGE value="Add new state UNCONFIRMED" />
     <MESSAGE value="Reformat output to match what we report for the quaterly board report" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reformat output to match what we report for the quaterly board report" />
+    <MESSAGE value="Refresh stats" />
+    <MESSAGE value="Update workspace file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update workspace file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1104,13 +1107,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/BugStat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1122,6 +1118,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
           <caret line="165" column="62" selection-start-line="165" selection-start-column="62" selection-end-line="165" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="53" column="79" selection-start-line="53" selection-start-column="79" selection-end-line="53" selection-end-column="79" />
         </state>
       </provider>
     </entry>
