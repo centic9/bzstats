@@ -2,30 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="3d50c326-f164-4551-8763-b0db7cf3f675" name="Excluded" comment="" />
-    <list default="true" readonly="true" id="1c608bdc-f54c-4487-8669-94117b6a93ab" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_1_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_25_0_jre.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_compat_qual_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_dstadler_commons_dost_1_0_0_25.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_18_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_21_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_commons_io_2_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_lang3_3_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_dstadler_commons_dost_1_0_0_20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_dstadler_commons_dost_1_0_0_24.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/bugzilla_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/bugzilla_main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/bugzilla_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/bugzilla_test.iml" afterDir="false" />
+    <list default="true" readonly="true" id="1c608bdc-f54c-4487-8669-94117b6a93ab" name="Default" comment="Update to Gradle 4.6, commons-dost 1.0.0.25, guava 25.0-jre and JaCoCo 0.8.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BugStat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BugStat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats.csv" beforeDir="false" afterPath="$PROJECT_DIR$/stats.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stats.svg" beforeDir="false" afterPath="$PROJECT_DIR$/stats.svg" afterDir="false" />
     </list>
     <ignored path="bugzilla.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -117,11 +97,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BugStat.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BugStat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/BugStat.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
               <caret line="14" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="POIBugzillaStats.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/POIBugzillaStats.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="165" column="62" selection-start-line="165" selection-start-column="62" selection-end-line="165" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -134,6 +123,11 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>thus having</find>
+    </findStrings>
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
@@ -501,9 +495,9 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/chart.R" />
         <option value="$PROJECT_DIR$/src/main/java/BugSeverity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/POIBugzillaStats.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/BugStat.java" />
+        <option value="$PROJECT_DIR$/src/main/java/POIBugzillaStats.java" />
       </list>
     </option>
   </component>
@@ -791,7 +785,7 @@
       <workItem from="1486326287094" duration="784000" />
       <workItem from="1516218943998" duration="310000" />
       <workItem from="1516531977001" duration="142000" />
-      <workItem from="1525198508843" duration="281000" />
+      <workItem from="1525198508843" duration="554000" />
     </task>
     <task id="LOCAL-00001" summary="Add small app to open random open bugs, reformat, ...">
       <created>1460281813604</created>
@@ -863,11 +857,32 @@
       <option name="project" value="LOCAL" />
       <updated>1516532108121</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Update to Gradle 4.6, commons-dost 1.0.0.25, guava 25.0-jre and JaCoCo 0.8.1">
+      <created>1525198801332</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1525198801332</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add new state UNCONFIRMED">
+      <created>1525199028234</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1525199028235</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Reformat output to match what we report for the quaterly board report">
+      <created>1525199062797</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1525199062797</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10155000" />
+    <option name="totallyTimeSpent" value="10428000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1680" height="1002" extended-state="0" />
@@ -888,6 +903,7 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25977996" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.3299435" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.16442543" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -904,7 +920,6 @@
       <window_info anchor="right" id="Properties" order="4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -931,7 +946,9 @@
     <MESSAGE value="Update stats" />
     <MESSAGE value="Update IntelliJ project after build.gradle updates" />
     <MESSAGE value="Update to Gradle 4.6, commons-dost 1.0.0.25, guava 25.0-jre and JaCoCo 0.8.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update to Gradle 4.6, commons-dost 1.0.0.25, guava 25.0-jre and JaCoCo 0.8.1" />
+    <MESSAGE value="Add new state UNCONFIRMED" />
+    <MESSAGE value="Reformat output to match what we report for the quaterly board report" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformat output to match what we report for the quaterly board report" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1066,13 +1083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/POIBugzillaStats.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="54" column="61" selection-start-line="54" selection-start-column="61" selection-end-line="54" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/chart.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
@@ -1105,6 +1115,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/POIBugzillaStats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="165" column="62" selection-start-line="165" selection-start-column="62" selection-end-line="165" selection-end-column="62" />
         </state>
       </provider>
     </entry>
