@@ -28,3 +28,9 @@ $ R
 > install.packages("<package>")
 > quit()
 ```
+
+# How to create stats/charts
+
+```
+./gradlew refresh
+```

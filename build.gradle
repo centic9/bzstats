@@ -21,7 +21,7 @@ dependencies {
 
     compile 'com.google.guava:guava:25.0-jre'
     compile 'commons-io:commons-io:2.6'
-    compile 'org.apache.commons:commons-lang3:3.8'
+    compile 'org.apache.commons:commons-lang3:3.9'
     compile 'org.apache.velocity:velocity:1.7'
 }
 
