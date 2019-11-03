@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.dstadler:commons-dost:1.0.0.27'
+    compile 'org.dstadler:commons-dost:1.0.0.28'
 
     compile 'com.google.guava:guava:25.0-jre'
     compile 'commons-io:commons-io:2.6'
@@ -26,7 +26,7 @@ dependencies {
 }
 
 wrapper {
-    gradleVersion = '5.6.3'
+    gradleVersion = '4.10.3'
 }
 
 task adjustWrapperPropertiesFile {
