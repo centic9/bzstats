@@ -19,7 +19,7 @@ repositories {
 dependencies {
     compile 'org.dstadler:commons-dost:1.0.0.30'
 
-    compile 'com.google.guava:guava:25.0-jre'
+    compile 'com.google.guava:guava:28.2-jre'
     compile 'commons-io:commons-io:2.6'
     compile 'org.apache.commons:commons-lang3:3.10'
     compile 'org.apache.velocity:velocity:1.7'
