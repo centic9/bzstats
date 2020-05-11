@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.dstadler:commons-dost:1.0.0.30'
+    compile 'org.dstadler:commons-dost:1.0.0.31'
 
     compile 'com.google.guava:guava:28.2-jre'
     compile 'commons-io:commons-io:2.6'
