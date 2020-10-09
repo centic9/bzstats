@@ -19,13 +19,22 @@ https://bz.apache.org/bugzilla/reports.cgi?product=POI&datasets=UNCONFIRMED&data
 ** parsedate
 ** reshape2
 ** ggplot2
+** gdtools
 ** svglite
 
 Install packages via 
 
 ```
+sudo apt-get install libcairo2-dev
+```
+
+```
 $ R
-> install.packages("<package>")
+> install.packages("parsedate")
+> install.packages("reshape2")
+> install.packages("ggplot2")
+> install.packages("gdtools")
+> install.packages("svglite")
 > quit()
 ```
 
