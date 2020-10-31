@@ -21,6 +21,7 @@ https://bz.apache.org/bugzilla/reports.cgi?product=POI&datasets=UNCONFIRMED&data
 ** ggplot2
 ** gdtools
 ** svglite
+** systemfonts
 
 Install packages via 
 
