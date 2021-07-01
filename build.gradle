@@ -8,7 +8,7 @@ mainClassName = "POIBugzillaStats"
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Apache POI Bugzilla Statistics', 'Implementation-Version': version
+        attributes 'Implementation-Title': 'Apache POI Bugzilla Statistics', 'Implementation-Version': archiveVersion
     }
 }
 
@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.dstadler:commons-dost:1.0.0.32'
+    compile 'org.dstadler:commons-dost:1.0.0.33'
 
     compile 'com.google.guava:guava:30.1.1-jre'
     compile 'commons-io:commons-io:2.9.0'
@@ -43,7 +43,7 @@ task adjustWrapperPropertiesFile {
 wrapper.finalizedBy adjustWrapperPropertiesFile
 
 test {
-    systemProperties = System.properties
+    systemProperties = System.properties as Map<String, ?>
 
 	// show standard out and standard error of the test JVM(s) on the console
 	testLogging.showStandardStreams = true
@@ -61,17 +61,16 @@ jacoco {
 task refreshStats(type: JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
 
-	main = mainClassName 
+	main = mainClassName
 }
 
-import org.apache.tools.ant.taskdefs.condition.Os
-
 task createChart(type: Exec) {
-	if(Os.isFamily(Os.FAMILY_WINDOWS)) {
-		executable 'C:/cygwin/bin/bash.exe' 
+	final String osName = System.getProperty("os.name").toLowerCase()
+	if(osName.contains("windows")) {
+		executable 'C:/cygwin/bin/bash.exe'
 		args '-c', '/bin/R --no-save -f chart.R'
 	} else {
-		executable 'R' 
+		executable 'R'
 		args '--no-save', '-f', 'chart.R'
 	}
 }
@@ -79,5 +78,5 @@ task createChart(type: Exec) {
 createChart.mustRunAfter refreshStats
 
 task refresh() {
-   dependsOn classes, refreshStats, createChart
+   dependsOn classes, check, refreshStats, createChart
 }
