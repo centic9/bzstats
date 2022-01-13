@@ -149,7 +149,7 @@ public class POIBugzillaStats {
             } else if (BugStat.isNeedinfo(bug)) {
                 needinfo++;
             } else {
-                components.addInt(bug.get("component"), 1);
+                components.inc(bug.get("component"));
 
                 if (getKeywords(bug).toLowerCase().contains("patch")) {
                     patch++;
