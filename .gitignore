@@ -1,0 +1,15 @@
+
+# /
+/.classpath
+/.project
+/bin
+/build
+/.gradle
+/bugzilla.*.log
+/bugzilla.0.0.log.lck
+/.ipynb_checkpoints
+/Rplots.pdf
+/.idea
+/.RData
+/.Rhistory
+/out
