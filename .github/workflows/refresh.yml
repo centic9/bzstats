@@ -1,0 +1,62 @@
+# This workflow is used to refresh the stats and chart
+
+# https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: Refresh stats
+
+# https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/
+on:
+    workflow_dispatch:
+
+jobs:
+  testmemory:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+        check-latest: true
+
+    - uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: '3.6.3'
+
+    - name: Install required package
+      run: sudo apt-get install -y libcairo2-dev
+
+    - name: Install packages for R
+      run: sudo /usr/bin/R --no-save -f install.R
+    
+    - name: Cache Gradle wrapper and dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+          ~/source
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Verify Gradle wrapper
+      uses: gradle/wrapper-validation-action@v1
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Clean SVN Sources
+      run: ./gradlew refresh
+
+    # https://stackoverflow.com/questions/57921401/push-to-origin-from-github-action/58393457#58393457
+    - name: Commit report
+      run: |
+        git config --global user.name 'Dominik Stadler'
+        git config --global user.email 'dominik.stadler@gmx.at'
+        git add stats*
+        git commit -m "Update stats via Github Action"
+        git push
