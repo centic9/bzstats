@@ -22,12 +22,12 @@ The following packages need to be installed to convert the data from
 * cairo development files (libcairo-dev on Debian/Ubuntu)
 * R
 * R packages
-** parsedate
-** reshape2
-** ggplot2
-** gdtools
-** svglite
-** systemfonts
+    * parsedate
+    * reshape2
+    * ggplot2
+    * gdtools
+    * svglite
+    * systemfonts
 
 Install packages via 
 
