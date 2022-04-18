@@ -26,11 +26,14 @@ jobs:
       with:
         r-version: '3.6.3'
 
-    - name: Install required package
+    - name: Install required os-package
       run: sudo apt-get install -y libcairo2-dev
 
     - name: Install packages for R
       run: sudo /usr/bin/R --no-save -f install.R
+    
+    - name: Check installed files for R-packages
+      run: find /usr/local/lib/R/site-library/
     
     - name: Cache Gradle wrapper and dependencies
       uses: actions/cache@v2
@@ -49,11 +52,11 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Clean SVN Sources
+    - name: Fetch statistics and refresh chart
       run: ./gradlew refresh
 
     # https://stackoverflow.com/questions/57921401/push-to-origin-from-github-action/58393457#58393457
-    - name: Commit report
+    - name: Commit changes
       run: |
         git config --global user.name 'Dominik Stadler'
         git config --global user.email 'dominik.stadler@gmx.at'
