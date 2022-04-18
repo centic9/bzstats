@@ -29,12 +29,16 @@ jobs:
     - name: Install required os-package
       run: sudo apt-get install -y libcairo2-dev
 
-    - name: Install packages for R
-      run: sudo /usr/bin/R --no-save -f install.R
-    
-    - name: Check installed files for R-packages
-      run: find /usr/local/lib/R/site-library/
-    
+    - uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        cache-version: 2
+        extra-packages: |
+          any::parsedate
+          any::reshape2
+          any::ggplot2
+          any::gdtools
+          any::svglite
+
     - name: Cache Gradle wrapper and dependencies
       uses: actions/cache@v2
       with:
