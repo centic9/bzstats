@@ -33,7 +33,7 @@ jobs:
       run: sudo apt-get install -y libcairo2-dev
 
     - name: Install packages for R
-      run: sudo /usr/bin/R --no-save -f install.R
+      run: R --no-save -f install.R
     
     - name: Check installed files for R-packages
       run: ls -al /usr/local/lib/R/site-library/
