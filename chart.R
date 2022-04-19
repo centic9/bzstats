@@ -1,6 +1,7 @@
-.libPaths( c( "/usr/local/lib/R/site-library" , .libPaths() ) )
 print(.libPaths())
+
 library(parsedate)
+
 data <- read.csv("stats.csv", stringsAsFactors=FALSE, sep=",", quote="")
 labeldata <- data[nrow(data), ]
 
