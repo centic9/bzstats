@@ -8,6 +8,9 @@ name: Refresh stats
 on:
     workflow_dispatch:
 
+env:
+  R_LIBS_USER: /usr/local/lib/R/site-library/
+  
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -33,7 +36,7 @@ jobs:
       run: sudo /usr/bin/R --no-save -f install.R
     
     - name: Check installed files for R-packages
-      run: find /usr/local/lib/R/site-library/
+      run: ls -al /usr/local/lib/R/site-library/
     
     - name: Cache Gradle wrapper and dependencies
       uses: actions/cache@v2
