@@ -7,10 +7,12 @@ import org.xml.sax.SAXException;
 
 import com.google.common.base.Preconditions;
 
-
+/**
+ * Parser for the Bugzilla XML format.
+ *
+ * Returns a map of issues with a corresponding map of key-value pairs.
+ */
 public class XmlHandler extends AbstractSimpleContentHandler<String, Map<String,String>> {
-    //private final static Logger log = LoggerFactory.make();
-
     private boolean inBug = false;
     private Map<String,String> tags;
 

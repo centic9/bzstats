@@ -1,7 +1,8 @@
 import java.util.Map;
 
-
-
+/**
+ * Helper to parse bug-status and decide if a bug is open or in state "needinfo"
+ */
 public class BugStat {
     public int stillOpen;
 

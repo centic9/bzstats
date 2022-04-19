@@ -15,10 +15,14 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 
+/**
+ * Fetch bugzilla stats as XML and combine them into statistics that are
+ * collected in file "stats.csv".
+ */
 public class POIBugzillaStats {
-    public static String BASE_URL = "https://bz.apache.org/bugzilla/";
-    public static URL URL;
+    public final static String BASE_URL = "https://bz.apache.org/bugzilla/";
 
+	public final static URL URL;
     static {
         try {
             URL = new URL(BASE_URL + "buglist.cgi?columnlist="
@@ -52,7 +56,6 @@ public class POIBugzillaStats {
 
         log.info("Fetching data from " + URL);
         try (InputStream stream = URL.openStream()) {
-            //try (InputStream stream = new FileInputStream("buglist2.xml")) {
             SortedMap<String, Map<String, String>> bugs =
                     new XmlHandler().parseContent(stream);
             log.info("Found " + bugs.size() + " entries");
@@ -85,6 +88,7 @@ public class POIBugzillaStats {
         if (dateStr.length() == 10) {
             date = format.parse(dateStr);
         } else {
+			// some dates are reported relative to now, e.g. "Fri. 01:40", we use current date instead for now
             log.info("TODO: Date: " + dateStr + " for item '" + attribute + "', using " + new Date() + " for bug " + bug.get("id"));
             date = new Date();
         }
@@ -112,13 +116,6 @@ public class POIBugzillaStats {
     }
 
     public static void write(Map<String, Map<String, String>> bugs, int open) throws IOException, ParseException {
-        /*Map<String,Object> context = new HashMap<>();
-        context.put("bugs", bugs);
-        context.put("writer", POIBugzillaStats.class);
-        context.put("stats", stats);*/
-
-        log.info("TODO: Writing to build/BugStats.html");
-
         MappedCounter<String> components = new MappedCounterImpl<>();
 
         Date lastWeek = DateUtils.addDays(new Date(), -7);
@@ -169,8 +166,6 @@ public class POIBugzillaStats {
                 "    " + outformat.format(new Date()) + "     Last week " + lastWeekOpened + " new bugs were reported and " + lastWeekTouched + " were changed and up to " + lastWeekClosed + " were resolved\n";
         log.info(output);
 
-        //VelocityUtils.render(context, "HeartratePlot.vm", new File("build/HeartratePlot.html"));
-
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE, true))) {
             // Date,Timestamp,Bugs overall,Open overall,Enhancements,Actual bugs,Needinfo,Workable bugs,Bugs with patch,Opened last week,Changed last week,Closed last week,Distribution
             writer.write(outformat.format(new Date()) + "," + new Date().getTime() + "," +
@@ -181,11 +176,9 @@ public class POIBugzillaStats {
         }
     }
 
-
     private static String getKeywords(Map<String, String> bug) {
         return bug.get("keywords");
     }
-
 
     private static BugSeverity getSeverity(Map<String, String> bug) {
         return BugSeverity.valueOf(bug.get("bug_severity"));
