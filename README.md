@@ -59,9 +59,9 @@ $ R
 
 ## Status Counts Chart
 
-[Status Counts Chart](https://bz.apache.org/bugzilla/reports.cgi?product=POI&datasets=UNCONFIRMED&datasets=NEW&datasets=ASSIGNED&datasets=REOPENED&datasets=NEEDINFO&datasets=RESOLVED&datasets=VERIFIED&datasets=CLOSED&datasets=FIXED&datasets=INVALID&datasets=WONTFIX&datasets=LATER&datasets=REMIND&datasets=DUPLICATE&datasets=WORKSFORME&datasets=MOVED)
+[Status Counts Chart](https://bz.apache.org/bugzilla/reports.cgi?product_id=39&datasets=UNCONFIRMED&datasets=NEW&datasets=ASSIGNED&datasets=REOPENED&datasets=NEEDINFO&datasets=RESOLVED&datasets=VERIFIED&datasets=CLOSED&datasets=FIXED&datasets=INVALID&datasets=WONTFIX&datasets=LATER&datasets=REMIND&datasets=DUPLICATE&datasets=WORKSFORME&datasets=MOVED&datasets=CLOSED&datasets=INFORMATIONPROVIDED)
 
 ## Status Counts Chart - Only active states
 
-[Status Counts Chart - Only active stats](https://bz.apache.org/bugzilla/reports.cgi?product=POI&datasets=UNCONFIRMED&datasets=NEW&datasets=ASSIGNED&datasets=REOPENED&datasets=NEEDINFO)
+[Status Counts Chart - Only active stats](https://bz.apache.org/bugzilla/reports.cgi?product_id=39&datasets=UNCONFIRMED&datasets=NEW&datasets=ASSIGNED&datasets=REOPENED&datasets=NEEDINFO)
 
