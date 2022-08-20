@@ -1,12 +1,17 @@
 This project will fetch current bug-statistics for [Apache POI](https://poi.apache.org/) and produce a time-chart of how many bugs were in certain states.
 
-This visualizes trends in how bug-entries over time.
+This visualizes trends in how bug-entries develop over time.
 
 # Current chart
 
 ![Latest chart](/stats.svg)
 
-# Requirements
+# Updating stats and charts via Github Actions
+
+The Github Action at https://github.com/centic9/bzstats/actions/workflows/refresh.yml performs the necessary steps to update
+the current stats and also refresh the chart.
+
+# Requirements for manually updating stats and chart
 
 ## Fetching stats
 
