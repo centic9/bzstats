@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'jacoco'
 
-sourceCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_11
 version = '1.0'
 mainClassName = "POIBugzillaStats"
 
