@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.dstadler:commons-dost:1.1.0.2'
+    implementation 'org.dstadler:commons-dost:1.2.0.0'
 
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'commons-io:commons-io:2.11.0'
