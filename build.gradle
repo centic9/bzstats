@@ -26,21 +26,8 @@ dependencies {
 }
 
 wrapper {
-    gradleVersion = '7.6'
+    gradleVersion = '7.6.1'
 }
-
-task adjustWrapperPropertiesFile {
-	doLast() {
-		ant.replaceregexp(match: '^#.*', replace: '', flags: 'g', byline: true) {
-			fileset(dir: project.projectDir, includes: 'gradle/wrapper/gradle-wrapper.properties')
-		}
-		new File(project.projectDir, 'gradle/wrapper/gradle-wrapper.properties').with {
-			it.text = it.readLines().findAll { it }.sort().join('\n')
-		}
-		ant.fixcrlf(file: 'gradle/wrapper/gradle-wrapper.properties', eol: 'lf')
-	}
-}
-wrapper.finalizedBy adjustWrapperPropertiesFile
 
 test {
     systemProperties = System.properties as Map<String, ?>
@@ -61,7 +48,7 @@ jacoco {
 task refreshStats(type: JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
 
-	main = mainClassName
+	mainClass = mainClassName
 }
 
 task createChart(type: Exec) {
