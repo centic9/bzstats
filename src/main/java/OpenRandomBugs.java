@@ -1,4 +1,4 @@
-import org.apache.commons.lang.math.RandomUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.dstadler.commons.logging.jdk.LoggerFactory;
 import org.dstadler.commons.util.DocumentStarter;
@@ -47,7 +47,7 @@ public class OpenRandomBugs {
 
             DocumentStarter starter = new DocumentStarter();
             for(int i = 0;i < 5;i++) {
-                int randomIndex = RandomUtils.nextInt(bugList.size());
+                int randomIndex = RandomUtils.insecure().randomInt(0, bugList.size());
                 Pair<String, Map<String, String>> entry = bugList.get(randomIndex);
                 starter.openURL(POIBugzillaStats.BASE_URL + "show_bug.cgi?id=" + entry.getValue().get("id"));
 

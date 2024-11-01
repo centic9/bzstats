@@ -5,11 +5,9 @@ import org.dstadler.commons.xml.AbstractSimpleContentHandler;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-import com.google.common.base.Preconditions;
-
 /**
  * Parser for the Bugzilla XML format.
- *
+ * <p>
  * Returns a map of issues with a corresponding map of key-value pairs.
  */
 public class XmlHandler extends AbstractSimpleContentHandler<String, Map<String,String>> {
@@ -34,7 +32,9 @@ public class XmlHandler extends AbstractSimpleContentHandler<String, Map<String,
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         if(localName.equals("bug")) {
-            Preconditions.checkState(!inBug, "Should not have nested 'bug' tags");
+            if(inBug) {
+				throw new IllegalStateException("Should not have nested 'bug' tags");
+			}
             inBug = true;
             tags = new HashMap<>();
         }
@@ -42,7 +42,7 @@ public class XmlHandler extends AbstractSimpleContentHandler<String, Map<String,
     }
 
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {
+    public void endElement(String uri, String localName, String qName) {
         if (localName.equals("bug")) {
             String bugId = tags.get("id");
             //log.info("Found bug " + bugId);
