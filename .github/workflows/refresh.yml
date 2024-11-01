@@ -22,7 +22,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         distribution: 'adopt'
-        java-version: '11'
+        java-version: '17'
         check-latest: true
 
     - uses: r-lib/actions/setup-r@v2
