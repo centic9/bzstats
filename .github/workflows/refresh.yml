@@ -10,6 +10,7 @@ on:
 
 env:
   R_LIBS_USER: /usr/local/lib/R/site-library/
+  BUGZILLA_API_KEY: ${{ secrets.BUGZILLA_API_KEY }}
 
 jobs:
   refresh:
@@ -58,7 +59,7 @@ jobs:
       run: ls -al /usr/local/lib/R/site-library/
 
     - name: Fetch statistics and refresh chart
-      run: ./gradlew refresh
+      run: ./gradlew createChart
 
     # https://stackoverflow.com/questions/57921401/push-to-origin-from-github-action/58393457#58393457
     - name: Commit changes
