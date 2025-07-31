@@ -7,7 +7,6 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Objects;
-import java.util.SortedMap;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -17,7 +16,6 @@ import org.dstadler.commons.collections.MappedCounter;
 import org.dstadler.commons.collections.MappedCounterImpl;
 import org.dstadler.commons.http5.HttpClientWrapper5;
 import org.dstadler.commons.logging.jdk.LoggerFactory;
-import org.xml.sax.SAXException;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,7 +48,7 @@ public class POIBugzillaStats {
 
     private static final File FILE = new File("stats.csv");
 
-    public static void main(String[] args) throws IOException, SAXException, ParseException {
+    public static void main(String[] args) throws IOException, ParseException {
         LoggerFactory.initLogging();
 
 		log.info("Fetching data from " + URL);
@@ -61,17 +59,6 @@ public class POIBugzillaStats {
 
 		JsonNode jsonNode = objectMapper.readTree(ret).get("bugs");
 		log.info("Found " + jsonNode.size() + " entries");
-
-		/*int open = 0;
-		SortedMap<Date, BugStat> stats = new TreeMap<>();
-		for (Map<String, String> bug : bugs.values()) {
-			Date opened = getDate(bug, "opendate");
-
-			if (BugStat.isOpen(bug)) {
-				addOpened(stats, opened);
-				open++;
-			}
-		}*/
 
 		write(jsonNode);
     }
@@ -105,18 +92,6 @@ public class POIBugzillaStats {
                                         DateUtils.setHours(date, 0), 0), 0), 0);
 
         return date;
-    }
-
-
-    private static void addOpened(SortedMap<Date, BugStat> stats, Date opened) {
-        BugStat stat = stats.get(opened);
-        //noinspection Java8ReplaceMapGet
-        if (stat == null) {
-            stat = new BugStat();
-            stats.put(opened, stat);
-        }
-
-        stat.stillOpen = stat.stillOpen + 1;
     }
 
     public static void write(JsonNode bugs) throws IOException, ParseException {
