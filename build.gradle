@@ -53,8 +53,8 @@ jacoco {
 
 tasks.register('refreshStats', JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
-
 	mainClass = 'POIBugzillaStats'
+	environment("BUGZILLA_API_KEY", System.getenv('BUGZILLA_API_KEY'))
 }
 
 tasks.register('createChart', Exec) {
