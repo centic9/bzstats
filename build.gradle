@@ -54,7 +54,7 @@ jacoco {
 tasks.register('refreshStats', JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
 
-	mainClass = mainClassName
+	mainClass = 'POIBugzillaStats'
 }
 
 tasks.register('createChart', Exec) {
