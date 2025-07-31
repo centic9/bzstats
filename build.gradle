@@ -2,9 +2,16 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'jacoco'
 
-sourceCompatibility = JavaVersion.VERSION_17
-version = '1.0'
-mainClassName = "POIBugzillaStats"
+java {
+	toolchain {
+		sourceCompatibility = JavaVersion.VERSION_17
+	}
+}
+
+application {
+	mainClass = "POIBugzillaStats"
+	version = '1.0'
+}
 
 jar {
     manifest {
@@ -44,15 +51,15 @@ jacoco {
     excludes = ['bin', 'build', '.gradle', '20*', 'Moves.txt', 'Splits.json', '.classpath', '.svn']
 }*/
 
-task refreshStats(type: JavaExec) {
+tasks.register('refreshStats', JavaExec) {
 	classpath = sourceSets.main.runtimeClasspath
 
 	mainClass = mainClassName
 }
 
-task createChart(type: Exec) {
+tasks.register('createChart', Exec) {
 	final String osName = System.getProperty("os.name").toLowerCase()
-	if(osName.contains("windows")) {
+	if (osName.contains("windows")) {
 		executable 'C:/cygwin/bin/bash.exe'
 		args '-c', '/bin/R --no-save -f chart.R'
 	} else {
@@ -63,6 +70,6 @@ task createChart(type: Exec) {
 
 createChart.mustRunAfter refreshStats
 
-task refresh() {
-   dependsOn classes, check, refreshStats, createChart
+tasks.register('refresh') {
+	dependsOn classes, check, refreshStats, createChart
 }
