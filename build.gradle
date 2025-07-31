@@ -19,7 +19,9 @@ repositories {
 dependencies {
     implementation 'org.dstadler:commons-dost:1.4.2'
 
-    implementation 'org.apache.commons:commons-lang3:3.17.0'
+    implementation 'org.apache.commons:commons-lang3:3.18.0'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.18.3'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
 }
 
 wrapper {

@@ -28,7 +28,7 @@ public class OpenRandomBugs {
         log.info("Fetching data from " + url);
         try (InputStream stream = url.openStream()) {
             //try (InputStream stream = new FileInputStream("buglist2.xml")) {
-            SortedMap<String, Map<String, String>> bugs =
+            /*SortedMap<String, Map<String, String>> bugs =
                     new XmlHandler().parseContent(stream);
             log.info("Found " + bugs.size() + " entries");
 
@@ -52,7 +52,7 @@ public class OpenRandomBugs {
                 starter.openURL(POIBugzillaStats.BASE_URL + "show_bug.cgi?id=" + entry.getValue().get("id"));
 
                 Thread.sleep(2000);
-            }
+            }*/
         }
     }
 }

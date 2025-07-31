@@ -1,19 +1,26 @@
-import org.apache.commons.lang3.time.DateUtils;
-import org.apache.commons.lang3.time.FastDateFormat;
-import org.dstadler.commons.collections.MappedCounter;
-import org.dstadler.commons.collections.MappedCounterImpl;
-import org.dstadler.commons.logging.jdk.LoggerFactory;
-import org.xml.sax.SAXException;
-
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.Map;
+import java.util.Objects;
 import java.util.SortedMap;
-import java.util.TreeMap;
 import java.util.logging.Logger;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.lang3.time.FastDateFormat;
+import org.dstadler.commons.collections.MappedCounter;
+import org.dstadler.commons.collections.MappedCounterImpl;
+import org.dstadler.commons.http5.HttpClientWrapper5;
+import org.dstadler.commons.logging.jdk.LoggerFactory;
+import org.xml.sax.SAXException;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Fetch bugzilla stats as XML and combine them into statistics that are
@@ -25,26 +32,18 @@ public class POIBugzillaStats {
 	public final static URL URL;
     static {
         try {
-            URL = new URL(BASE_URL + "buglist.cgi?columnlist="
-                    + "product%2C"
-                    + "component%2C"
-                    + "assigned_to%2C"
-                    + "bug_status%2C"
-                    + "resolution%2C"
-                    + "short_desc%2C"
-                    + "changeddate%2C"
-                    + "bug_id%2C"
-                    + "bug_severity%2C"
-                    + "priority%2C"
-                    + "keywords%2C"
-                    + "opendate&f0=OP&f1=OP&f3=CP&f4=CP&j1=OR&list_id=122189&product=POI&" +
-                    "query_format=advanced&ctype=rdf&human=1&limit=0");
+            URL = new URL(BASE_URL + "rest.cgi/bug?"
+					+ "api_key=" + System.getenv("BUGZILLA_API_KEY") + "&"
+					+ "product=POI&"
+					+ "status=UNCONFIRMED&status=NEW&status=ASSIGNED&status=REOPENED&status=NEEDINFO");
         } catch (MalformedURLException e) {
             throw new IllegalStateException(e);
         }
     }
 
     private final static Logger log = LoggerFactory.make();
+
+	private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private static final FastDateFormat format = FastDateFormat.getInstance("yyyy-MM-dd");
     private static final FastDateFormat outformat = FastDateFormat.getInstance("yyyy-MM-dd HH:mm");
@@ -54,39 +53,44 @@ public class POIBugzillaStats {
     public static void main(String[] args) throws IOException, SAXException, ParseException {
         LoggerFactory.initLogging();
 
-        log.info("Fetching data from " + URL);
-        try (InputStream stream = URL.openStream()) {
-            SortedMap<String, Map<String, String>> bugs =
-                    new XmlHandler().parseContent(stream);
-            log.info("Found " + bugs.size() + " entries");
+		log.info("Fetching data from " + URL);
+		String ret = HttpClientWrapper5.retrieveData(URL.toString());
 
-            int open = 0;
-            SortedMap<Date, BugStat> stats = new TreeMap<>();
-            for (Map<String, String> bug : bugs.values()) {
-                Date opened = getDate(bug, "opendate");
+		/*Files.copy(new ByteArrayInputStream(ret.getBytes(StandardCharsets.UTF_8)),
+				Path.of("/tmp", "test.json"), StandardCopyOption.REPLACE_EXISTING);*/
 
-                if (BugStat.isOpen(bug)) {
-                    addOpened(stats, opened);
-                    open++;
-                }
-            }
+		JsonNode jsonNode = objectMapper.readTree(ret).get("bugs");
+		log.info("Found " + jsonNode.size() + " entries");
 
-            write(bugs, open);
-        }
+		/*int open = 0;
+		SortedMap<Date, BugStat> stats = new TreeMap<>();
+		for (Map<String, String> bug : bugs.values()) {
+			Date opened = getDate(bug, "opendate");
+
+			if (BugStat.isOpen(bug)) {
+				addOpened(stats, opened);
+				open++;
+			}
+		}*/
+
+		write(jsonNode);
     }
 
-
-    private static Date getDate(Map<String, String> bug, String attribute)
+    private static Date getDate(JsonNode bug, String attribute)
             throws ParseException {
         Date date;
-        String dateStr = bug.get(attribute);
+        String dateStr = Objects.requireNonNull(bug.get(attribute),
+				"No data found for attribute " + attribute + " for " + bug).asText();
 
         if (dateStr == null) {
             return null;
         }
 
         if (dateStr.length() == 10) {
-            date = format.parse(dateStr);
+			date = format.parse(dateStr);
+		} else if  (dateStr.length() == 20) {
+			// "2010-05-20T04:40:12Z"
+			date = DateFormatUtils.ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.parse(dateStr);
         } else {
 			// some dates are reported relative to now, e.g. "Fri. 01:40", we use current date instead for now
             log.info("TODO: Date: " + dateStr + " for item '" + attribute + "', using " + new Date() + " for bug " + bug.get("id"));
@@ -115,20 +119,20 @@ public class POIBugzillaStats {
         stat.stillOpen = stat.stillOpen + 1;
     }
 
-    public static void write(Map<String, Map<String, String>> bugs, int open) throws IOException, ParseException {
+    public static void write(JsonNode bugs) throws IOException, ParseException {
         MappedCounter<String> components = new MappedCounterImpl<>();
 
         Date lastWeek = DateUtils.addDays(new Date(), -7);
         int lastWeekOpened = 0, lastWeekTouched = 0, lastWeekClosed = 0;
         int enhancement = 0, patch = 0, needinfo = 0;
-        for (Map<String, String> bug : bugs.values()) {
-            Date date = getDate(bug, "opendate");
+        for (JsonNode bug : bugs) {
+            Date date = getDate(bug, "creation_time");
             if (date == null) {
                 log.info("No opened-date for bug " + bug.get("id"));
             } else if (date.after(lastWeek)) {
                 lastWeekOpened++;
             }
-            Date changed = getDate(bug, "changeddate");
+            Date changed = getDate(bug, "last_change_time");
             if (changed != null && changed.after(lastWeek)) {
                 lastWeekTouched++;
                 if (!BugStat.isOpen(bug)) {
@@ -146,7 +150,7 @@ public class POIBugzillaStats {
             } else if (BugStat.isNeedinfo(bug)) {
                 needinfo++;
             } else {
-                components.inc(bug.get("component"));
+                components.inc(bug.get("component").asText());
 
                 if (getKeywords(bug).toLowerCase().contains("patch")) {
                     patch++;
@@ -154,8 +158,8 @@ public class POIBugzillaStats {
             }
         }
 
-        String output = "Result:\n" +
-                "    " + outformat.format(new Date()) + "     Had: " + bugs.size() + " bugs reported for POI altogether\n" +
+		int open = bugs.size();
+		String output = "Result:\n" +
                 "    " + outformat.format(new Date()) + "     " + open + " bugs are open overall\n" +
                 "    " + outformat.format(new Date()) + "     Having " + enhancement + " enhancements\n" +
                 "    " + outformat.format(new Date()) + "     Thus having " + (open - enhancement) + " actual bugs\n" +
@@ -169,18 +173,18 @@ public class POIBugzillaStats {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE, true))) {
             // Date,Timestamp,Bugs overall,Open overall,Enhancements,Actual bugs,Needinfo,Workable bugs,Bugs with patch,Opened last week,Changed last week,Closed last week,Distribution
             writer.write(outformat.format(new Date()) + "," + new Date().getTime() + "," +
-                    bugs.size() + "," + open + "," + enhancement + "," + (open - enhancement) + "," + needinfo + "," + (open - enhancement - needinfo) + "," +
+					open + "," + open + "," + enhancement + "," + (open - enhancement) + "," + needinfo + "," + (open - enhancement - needinfo) + "," +
                     patch + "," + lastWeekOpened + "," + lastWeekTouched + "," + lastWeekClosed + "," +
                     components.sortedMap().toString().replace(",", ";") +
                     "\n");
         }
     }
 
-    private static String getKeywords(Map<String, String> bug) {
-        return bug.get("keywords");
+    private static String getKeywords(JsonNode bug) {
+        return bug.get("keywords").asText();
     }
 
-    private static BugSeverity getSeverity(Map<String, String> bug) {
-        return BugSeverity.valueOf(bug.get("bug_severity"));
+    private static BugSeverity getSeverity(JsonNode bug) {
+        return BugSeverity.valueOf(bug.get("severity").asText());
     }
 }

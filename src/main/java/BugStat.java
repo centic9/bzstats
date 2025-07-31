@@ -1,4 +1,4 @@
-import java.util.Map;
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * Helper to parse bug-status and decide if a bug is open or in state "needinfo"
@@ -6,8 +6,8 @@ import java.util.Map;
 public class BugStat {
     public int stillOpen;
 
-	public static boolean isOpen(Map<String, String> bug) {
-        String state = bug.get("bug_status");
+	public static boolean isOpen(JsonNode bug) {
+        String state = bug.get("status").asText();
 
         switch (state) {
             case "NEW":
@@ -27,7 +27,7 @@ public class BugStat {
         }
 	}
 
-	public static boolean isNeedinfo(Map<String, String> bug) {
-		return bug.get("bug_status").equals("NEEDINFO");
+	public static boolean isNeedinfo(JsonNode bug) {
+		return bug.get("status").asText().equals("NEEDINFO");
 	}
 }
