@@ -24,15 +24,15 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.dstadler:commons-dost:1.4.2'
+    implementation 'org.dstadler:commons-dost:1.4.3'
 
     implementation 'org.apache.commons:commons-lang3:3.18.0'
-	implementation 'com.fasterxml.jackson.core:jackson-core:2.18.3'
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.19.2'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.2'
 }
 
 wrapper {
-    gradleVersion = '8.14.2'
+    gradleVersion = '8.14.3'
 }
 
 test {
