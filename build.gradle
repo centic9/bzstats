@@ -26,9 +26,9 @@ repositories {
 dependencies {
     implementation 'org.dstadler:commons-dost:1.4.3'
 
-    implementation 'org.apache.commons:commons-lang3:3.18.0'
-	implementation 'com.fasterxml.jackson.core:jackson-core:2.19.2'
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.2'
+    implementation 'org.apache.commons:commons-lang3:3.19.0'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.20.0'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.20.0'
 }
 
 wrapper {
@@ -43,7 +43,7 @@ test {
 }
 
 jacoco {
-    toolVersion = '0.8.13'
+    toolVersion = '0.8.14'
 }
 
 /*task createZip(type: Zip) {
