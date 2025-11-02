@@ -50,7 +50,8 @@ jobs:
         r-version: '4.3.3'
 
     - name: Install required os-package
-      run: sudo apt-get install -y libcairo2-dev r-cran-reshape2 r-cran-ggplot2 r-cran-gdtools r-cran-svglite
+      run: sudo apt-get install -y libcairo2-dev r-cran-reshape2 r-cran-ggplot2 r-cran-gdtools r-cran-svglite \
+          libharfbuzz-dev libfribidi-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
 
     - name: Install packages for R
       run: sudo R --no-save -f install.R
