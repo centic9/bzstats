@@ -1,4 +1,4 @@
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 
 /**
  * Helper to parse bug-status and decide if a bug is open or in state "needinfo"
@@ -7,7 +7,7 @@ public class BugStat {
     public int stillOpen;
 
 	public static boolean isOpen(JsonNode bug) {
-        String state = bug.get("status").asText();
+        String state = bug.get("status").asString();
 
         switch (state) {
             case "NEW":
@@ -28,6 +28,6 @@ public class BugStat {
 	}
 
 	public static boolean isNeedinfo(JsonNode bug) {
-		return bug.get("status").asText().equals("NEEDINFO");
+		return bug.get("status").asString().equals("NEEDINFO");
 	}
 }

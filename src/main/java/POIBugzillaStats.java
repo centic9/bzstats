@@ -17,8 +17,8 @@ import org.dstadler.commons.collections.MappedCounterImpl;
 import org.dstadler.commons.http5.HttpClientWrapper5;
 import org.dstadler.commons.logging.jdk.LoggerFactory;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * Fetch bugzilla stats as XML and combine them into statistics that are
@@ -67,7 +67,7 @@ public class POIBugzillaStats {
             throws ParseException {
         Date date;
         String dateStr = Objects.requireNonNull(bug.get(attribute),
-				"No data found for attribute " + attribute + " for " + bug).asText();
+				"No data found for attribute " + attribute + " for " + bug).asString();
 
         if (dateStr == null) {
             return null;
@@ -125,7 +125,7 @@ public class POIBugzillaStats {
             } else if (BugStat.isNeedinfo(bug)) {
                 needinfo++;
             } else {
-                components.inc(bug.get("component").asText());
+                components.inc(bug.get("component").asString());
 
                 if (getKeywords(bug).toLowerCase().contains("patch")) {
                     patch++;
@@ -156,10 +156,10 @@ public class POIBugzillaStats {
     }
 
     private static String getKeywords(JsonNode bug) {
-        return bug.get("keywords").asText();
+        return bug.get("keywords").asString();
     }
 
     private static BugSeverity getSeverity(JsonNode bug) {
-        return BugSeverity.valueOf(bug.get("severity").asText());
+        return BugSeverity.valueOf(bug.get("severity").asString());
     }
 }

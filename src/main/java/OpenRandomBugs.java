@@ -7,8 +7,8 @@ import org.dstadler.commons.logging.jdk.LoggerFactory;
 import org.dstadler.commons.util.DocumentStarter;
 import org.xml.sax.SAXException;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * Open a number of open POI bugs randomly to let us randomly work on
