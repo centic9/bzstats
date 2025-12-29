@@ -23,7 +23,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'adopt'
-        java-version: '17'
+        java-version: '21'
         check-latest: true
 
     - name: Cache Gradle wrapper and dependencies
@@ -50,7 +50,7 @@ jobs:
         r-version: '4.3.3'
 
     - name: Install required os-package
-      run: sudo apt-get install -y libcairo2-dev r-cran-reshape2 r-cran-ggplot2 r-cran-gdtools r-cran-svglite 
+      run: sudo apt-get install -y libcairo2-dev r-cran-reshape2 r-cran-ggplot2 r-cran-gdtools r-cran-svglite
 
     - name: Install required dev-packages for installing R-packages
       run: sudo apt-get install -y libharfbuzz-dev libfribidi-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
