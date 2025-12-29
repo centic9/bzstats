@@ -5,7 +5,6 @@ import org.apache.commons.lang3.RandomUtils;
 import org.dstadler.commons.http5.HttpClientWrapper5;
 import org.dstadler.commons.logging.jdk.LoggerFactory;
 import org.dstadler.commons.util.DocumentStarter;
-import org.xml.sax.SAXException;
 
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
@@ -19,7 +18,7 @@ public class OpenRandomBugs {
 
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static void main(String[] args) throws IOException, SAXException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         LoggerFactory.initLogging();
 
 		log.info("Fetching data from " + POIBugzillaStats.URL);

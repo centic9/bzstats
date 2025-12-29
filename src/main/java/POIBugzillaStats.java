@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
@@ -30,10 +31,10 @@ public class POIBugzillaStats {
 	public final static URL URL;
     static {
         try {
-            URL = new URL(BASE_URL + "rest.cgi/bug?"
+            URL = URI.create(BASE_URL + "rest.cgi/bug?"
 					+ "api_key=" + System.getenv("BUGZILLA_API_KEY") + "&"
 					+ "product=POI&"
-					+ "status=UNCONFIRMED&status=NEW&status=ASSIGNED&status=REOPENED&status=NEEDINFO");
+					+ "status=UNCONFIRMED&status=NEW&status=ASSIGNED&status=REOPENED&status=NEEDINFO").toURL();
         } catch (MalformedURLException e) {
             throw new IllegalStateException(e);
         }
