@@ -53,7 +53,7 @@ public class POIBugzillaStats {
         LoggerFactory.initLogging();
 
 		log.info("Fetching data from " + URL);
-		String ret = HttpClientWrapper5.retrieveData(URL.toString());
+		String ret = HttpClientWrapper5.retrieveData(URL.toString(), "", null, 120_000);
 
 		/*Files.copy(new ByteArrayInputStream(ret.getBytes(StandardCharsets.UTF_8)),
 				Path.of("/tmp", "test.json"), StandardCopyOption.REPLACE_EXISTING);*/
