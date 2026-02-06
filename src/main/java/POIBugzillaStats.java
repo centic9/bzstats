@@ -157,7 +157,7 @@ public class POIBugzillaStats {
     }
 
     private static String getKeywords(JsonNode bug) {
-        return bug.get("keywords").asString();
+        return bug.get("keywords").toPrettyString();
     }
 
     private static BugSeverity getSeverity(JsonNode bug) {
